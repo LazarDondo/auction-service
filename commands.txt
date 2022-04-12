@@ -1,0 +1,11 @@
+sls create (ime template-a)
+
+yaml mi je konfiguracija za sve
+service tu ide ime
+plugins pluginovi
+provider koji se koristi pa o njemu nesto
+function navedem ime funkcije, handler (putanja do js fajla i posle tacke ime onoga sto eksportujem), events za endpoint
+sls deploy [--stage dev] [-v]
+sls remove da uklonim stack
+ 
+CloudFormation->Stacks tu mogu da vidim sta sam deploy-ovao. Kada kliknem u events mogu da vidim sta se sve desilo, u resources resurse,...
