@@ -6,6 +6,19 @@ AuctionsTable:
     AttributeDefinitions: #array of properties
       - AttributeName: id #name and type are object or an array item
         AttributeType: S  #String
+      - AttributeName: status
+        AttributeType: S
+      - AttributeName: endingAt
+        AttributeType: S
     KeySchema: #here i say that attribute with name id should be hash of the table
       - AttributeName: id
         KeyType: HASH
+    GlobalSecondaryIndexes:
+      - IndexName: statusAndEndDate
+        KeySchema: 
+          - AttributeName: status
+            KeyType: HASH
+          - AttributeName: endingAt
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL
