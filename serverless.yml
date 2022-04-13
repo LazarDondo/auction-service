@@ -10,12 +10,14 @@ provider:
   memorySize: 256
   stage: ${opt:stage, 'dev'}
   region: eu-west-1
+  environment:
+    AUCTIONS_TABLE_NAME: ${self:custom.AuctionsTable.name}
   iamRoleStatements:
-    - ${file(iam/AuctionsTableIAM.yaml):AuctionsTableIAM}
+    - ${file(iam/AuctionsTableIAM.yml):AuctionsTableIAM}
 
 resources:
   Resources:
-      AuctionsTable: ${file(resources/AuctionsTable.yaml):AuctionsTable}
+      AuctionsTable: ${file(resources/AuctionsTable.yml):AuctionsTable}
   
 functions:
   createAuction:
@@ -26,5 +28,8 @@ functions:
           path: /auction
 
 custom:
+  AuctionsTable:
+    name: !Ref AuctionsTable # returns table name. Every DynamoDB has return values that can be seen in CloudFormation and used in the yml files
+    arn: !GetAtt AuctionsTable.Arn #Arn is attribute of the DynamoDB table
   bundle:
     linting: false
