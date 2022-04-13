@@ -1,8 +1,5 @@
 import AWS from 'aws-sdk';
-import middy from '@middy/core';
-import httpJsonBodyParser from '@middy/http-json-body-parser';
-import httpEventNormalizer from '@middy/http-event-normalizer';
-import httpErrorHandler from '@middy/http-error-handler';
+import commonMiddleware from '../lib/commonMiddleware';
 import createError from 'http-errors';
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -27,9 +24,6 @@ async function getAuctions(event, context) {
   }
 }
 
-export const handler = middy(getAuctions)
-.use(httpJsonBodyParser()) //parses json body after every request
-.use(httpEventNormalizer()) //adjusts api gateway objects, prevents non existing object in path and query parameters
-.use(httpErrorHandler()); //makes error handling easier
+export const handler = commonMiddleware(getAuctions);
 
 
