@@ -41,6 +41,13 @@ functions:
           method: GET
           path: /auction/{id}
 
+  placeBid:
+    handler: src/handlers/placeBid.handler
+    events:
+      - http:
+          method: PATCH
+          path: /auction/{id}/bid
+
 custom:
   AuctionsTable:
     name: !Ref AuctionsTable # returns table name. Every DynamoDB has return values that can be seen in CloudFormation and used in the yml files
