@@ -42,7 +42,7 @@ export const handler = commonMiddleware(getAuctions)
     inputSchema: getAuctionsSchema,
     ajvOptions: {
       useDefaults: true,
-      string: false
+      strict: false
     }
   }));
 
