@@ -58,7 +58,7 @@ functions:
       #- schedule: rate(1 minute)
 
 custom:
-  authorizer: arn:aws:lambda:#{aws::Region}:#{aws::AccountId}:function:auth-service-${self:provider.stage}-auth
+  authorizer: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:auth-service-${self:provider.stage}-auth
   AuctionsTable:
     name: !Ref AuctionsTable # returns table name. Every DynamoDB has return values that can be seen in CloudFormation and used in the yml files
     arn: !GetAtt AuctionsTable.Arn #Arn is attribute of the DynamoDB table
