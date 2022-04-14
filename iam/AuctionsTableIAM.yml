@@ -5,5 +5,8 @@ AuctionsTableIAM:
     - dynamodb:Scan
     - dynamodb:GetItem
     - dynamodb:UpdateItem
+    - dynamodb:Query
  Resource:
     - ${self:custom.AuctionsTable.arn}
+    - !Join ['/', [ '${self:custom.AuctionsTable.arn}', 'index', 'statusAndEndDate']] #same as below
+    #- ${self:custom.AuctionsTable.arn}/index/statusAndEndDate global secondary index is virtual table for its own so it has its own arn and it is arn of the table/index/qsi name
